@@ -7,6 +7,10 @@ var declarations = {
     property: 'border-top-width',
     value: '0.00',
   },
+  'border-width': {
+    property: 'border-width',
+    value: '1px',
+  },
   'border-right-width': {
     property: 'border-right-width',
     value: '0.00',

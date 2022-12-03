@@ -77,44 +77,11 @@ var declarations = {
   },
 };
 
-let result = {
-  'border-top-width': '0.00',
-  'border-right-width': '0.00',
-  'border-left-width': '0.00',
-  'border-bottom-width': '1px',
-  'border-color': '#e9ecef',
-  'border-style': 'solid',
-  overflow: 'hidden',
-  display: 'flex',
-  'justify-content': 'flex-start',
-  'align-items': 'stretch',
-  'flex-direction': 'row',
-  width: '530px',
-  height: '70px',
-  'box-sizing': 'border-box',
-  'margin-top': '25.5px',
-  'flex-grow': 0,
-  'flex-shrink': 0,
-  'flex-basis': 'auto',
-};
+let result = properties;
 
 shorthands.forEach(function (shorthand) {
   const shorthandValue = shorthand.getShorthandValue(shorthand, declarations);
-  if (shorthandValue === 'delete') {
-    result = Object.entries(result).reduce((transformedObject, [property, value]) => {
-      if (!shorthand.properties.includes(property)) {
-        transformedObject[property] = value;
-      }
-      return transformedObject;
-    }, {});
-
-    declarations = Object.entries(declarations).reduce((transformedObject, [k]) => {
-      if (!shorthand.properties.includes(k)) {
-        transformedObject[k] = declarations[k];
-      }
-      return transformedObject;
-    }, {});
-  } else if (shorthandValue !== '') {
+  if (shorthandValue !== '') {
     result = Object.entries(result).reduce(
       (transformedObject, [property, value]) => {
         if (!shorthand.properties.includes(property)) {
@@ -124,16 +91,7 @@ shorthands.forEach(function (shorthand) {
       },
       { [shorthand.shorthandProperty]: shorthandValue },
     );
-    declarations = Object.entries(declarations).reduce(
-      (transformedObject, [k]) => {
-        if (!shorthand.properties.includes(k)) {
-          transformedObject[k] = declarations[k];
-        }
-        return transformedObject;
-      },
-      { [shorthand.shorthandProperty]: { property: shorthand.shorthandProperty, value: shorthandValue } },
-    );
   }
 });
 
-console.log(result);
+// console.log(declarations);

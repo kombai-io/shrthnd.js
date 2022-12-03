@@ -13,21 +13,22 @@ module.exports = function (shorthand, declarations) {
       declarations['border-left'].value === declarations['border-top'].value
     ) {
       shorthand.properties.push('border-top');
-      shorthand.properties.push('border-bottom');
-      shorthand.properties.push('border-right');
-      shorthand.properties.push('border-left');
+      shorthand.properties.push('border-top');
+      shorthand.properties.push('border-top');
+      shorthand.properties.push('border-top');
+
       return declarations['border-top'].value;
     }
   }
   if (
-    declarations['border-top'] ||
-    declarations['border-bottom'] ||
-    declarations['border-left'] ||
-    declarations['border-right']
+    !declarations['border-width'] ||
+    !declarations['border-style'] ||
+    !declarations['border-color'] ||
+    !declarations['border-top'] ||
+    !declarations['border-bottom'] ||
+    !declarations['border-left'] ||
+    !declarations['border-right']
   ) {
-    return 'delete';
-  }
-  if (!declarations['border-width'] || !declarations['border-style'] || !declarations['border-color']) {
     return '';
   }
 

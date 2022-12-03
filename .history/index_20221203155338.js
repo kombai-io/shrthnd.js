@@ -84,6 +84,7 @@ let result = {
   'border-bottom-width': '1px',
   'border-color': '#e9ecef',
   'border-style': 'solid',
+  'border-width': '1px',
   overflow: 'hidden',
   display: 'flex',
   'justify-content': 'flex-start',

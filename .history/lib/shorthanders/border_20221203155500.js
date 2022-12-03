@@ -25,7 +25,9 @@ module.exports = function (shorthand, declarations) {
     declarations['border-left'] ||
     declarations['border-right']
   ) {
-    return 'delete';
+    
+      return declarations['border-top'].value;
+    }
   }
   if (!declarations['border-width'] || !declarations['border-style'] || !declarations['border-color']) {
     return '';

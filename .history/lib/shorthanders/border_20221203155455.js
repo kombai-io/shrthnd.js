@@ -25,7 +25,17 @@ module.exports = function (shorthand, declarations) {
     declarations['border-left'] ||
     declarations['border-right']
   ) {
-    return 'delete';
+    if (
+      declarations['border-top'].value === declarations['border-bottom'].value &&
+      declarations['border-left'].value === declarations['border-right'].value &&
+      declarations['border-left'].value === declarations['border-top'].value
+    ) {
+      shorthand.properties.push('border-top');
+      shorthand.properties.push('border-bottom');
+      shorthand.properties.push('border-right');
+      shorthand.properties.push('border-left');
+      return declarations['border-top'].value;
+    }
   }
   if (!declarations['border-width'] || !declarations['border-style'] || !declarations['border-color']) {
     return '';

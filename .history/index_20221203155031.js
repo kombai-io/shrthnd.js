@@ -7,6 +7,10 @@ var declarations = {
     property: 'border-top-width',
     value: '0.00',
   },
+  'border-width': {
+    property: 'border-width',
+    value: '1px',
+  },
   'border-right-width': {
     property: 'border-right-width',
     value: '0.00',
@@ -84,6 +88,7 @@ let result = {
   'border-bottom-width': '1px',
   'border-color': '#e9ecef',
   'border-style': 'solid',
+  'border-width': '1px',
   overflow: 'hidden',
   display: 'flex',
   'justify-content': 'flex-start',

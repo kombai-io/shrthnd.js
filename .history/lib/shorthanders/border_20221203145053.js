@@ -1,6 +1,7 @@
 module.exports = function (shorthand, declarations) {
   var shorthandValue = require('./generic')(shorthand, declarations);
   // If we declare bg size but not position, we can't shorthand
+  console.log(shorthand);
   if (
     declarations['border-top'] &&
     declarations['border-bottom'] &&
@@ -12,22 +13,18 @@ module.exports = function (shorthand, declarations) {
       declarations['border-left'].value === declarations['border-right'].value &&
       declarations['border-left'].value === declarations['border-top'].value
     ) {
-      shorthand.properties.push('border-top');
-      shorthand.properties.push('border-bottom');
-      shorthand.properties.push('border-right');
-      shorthand.properties.push('border-left');
       return declarations['border-top'].value;
     }
   }
   if (
-    declarations['border-top'] ||
-    declarations['border-bottom'] ||
-    declarations['border-left'] ||
-    declarations['border-right']
+    !declarations['border-width'] ||
+    !declarations['border-style'] ||
+    !declarations['border-color'] ||
+    !declarations['border-top'] ||
+    !declarations['border-bottom'] ||
+    !declarations['border-left'] ||
+    !declarations['border-right']
   ) {
-    return 'delete';
-  }
-  if (!declarations['border-width'] || !declarations['border-style'] || !declarations['border-color']) {
     return '';
   }
 

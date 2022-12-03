@@ -5,15 +5,15 @@ var shorthands = require('./lib/properties');
 var declarations = {
   'border-top-width': {
     property: 'border-top-width',
-    value: '0.00',
+    value: '1px',
   },
   'border-right-width': {
     property: 'border-right-width',
-    value: '0.00',
+    value: '1px',
   },
   'border-left-width': {
     property: 'border-left-width',
-    value: '0.00',
+    value: '1px',
   },
   'border-bottom-width': {
     property: 'border-bottom-width',
@@ -78,9 +78,9 @@ var declarations = {
 };
 
 let result = {
-  'border-top-width': '0.00',
-  'border-right-width': '0.00',
-  'border-left-width': '0.00',
+  'border-top-width': '1px',
+  'border-right-width': '1px',
+  'border-left-width': '1px',
   'border-bottom-width': '1px',
   'border-color': '#e9ecef',
   'border-style': 'solid',
@@ -100,21 +100,7 @@ let result = {
 
 shorthands.forEach(function (shorthand) {
   const shorthandValue = shorthand.getShorthandValue(shorthand, declarations);
-  if (shorthandValue === 'delete') {
-    result = Object.entries(result).reduce((transformedObject, [property, value]) => {
-      if (!shorthand.properties.includes(property)) {
-        transformedObject[property] = value;
-      }
-      return transformedObject;
-    }, {});
-
-    declarations = Object.entries(declarations).reduce((transformedObject, [k]) => {
-      if (!shorthand.properties.includes(k)) {
-        transformedObject[k] = declarations[k];
-      }
-      return transformedObject;
-    }, {});
-  } else if (shorthandValue !== '') {
+  if (shorthandValue !== '') {
     result = Object.entries(result).reduce(
       (transformedObject, [property, value]) => {
         if (!shorthand.properties.includes(property)) {
@@ -123,15 +109,6 @@ shorthands.forEach(function (shorthand) {
         return transformedObject;
       },
       { [shorthand.shorthandProperty]: shorthandValue },
-    );
-    declarations = Object.entries(declarations).reduce(
-      (transformedObject, [k]) => {
-        if (!shorthand.properties.includes(k)) {
-          transformedObject[k] = declarations[k];
-        }
-        return transformedObject;
-      },
-      { [shorthand.shorthandProperty]: { property: shorthand.shorthandProperty, value: shorthandValue } },
     );
   }
 });

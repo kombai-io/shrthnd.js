@@ -106,14 +106,13 @@ shorthands.forEach(function (shorthand) {
         transformedObject[property] = value;
       }
       return transformedObject;
-    }, {});
-
+    });
     declarations = Object.entries(declarations).reduce((transformedObject, [k]) => {
       if (!shorthand.properties.includes(k)) {
         transformedObject[k] = declarations[k];
       }
       return transformedObject;
-    }, {});
+    });
   } else if (shorthandValue !== '') {
     result = Object.entries(result).reduce(
       (transformedObject, [property, value]) => {

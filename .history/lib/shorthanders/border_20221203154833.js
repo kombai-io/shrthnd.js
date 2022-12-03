@@ -20,14 +20,14 @@ module.exports = function (shorthand, declarations) {
     }
   }
   if (
-    declarations['border-top'] ||
-    declarations['border-bottom'] ||
-    declarations['border-left'] ||
-    declarations['border-right']
+    !declarations['border-width'] ||
+    !declarations['border-style'] ||
+    !declarations['border-color'] ||
+    !declarations['border-top'] ||
+    !declarations['border-bottom'] ||
+    !declarations['border-left'] ||
+    !declarations['border-right']
   ) {
-    return 'delete';
-  }
-  if (!declarations['border-width'] || !declarations['border-style'] || !declarations['border-color']) {
     return '';
   }
 

@@ -37,26 +37,8 @@ module.exports = [
   {
     shorthandProperty: 'border-top',
     properties: ['border-top-width', 'border-top-style', 'border-top-color'],
-    shorthandSyntax: 'border-top-width border-top-style border-top-color',
-    getShorthandValue: require('./shorthanders/border-top'),
-  },
-  {
-    shorthandProperty: 'border-bottom',
-    properties: ['border-bottom-width', 'border-bottom-style', 'border-bottom-color'],
-    shorthandSyntax: 'border-bottom-width border-bottom-style border-bottom-color',
-    getShorthandValue: require('./shorthanders/border-top'),
-  },
-  {
-    shorthandProperty: 'border-left',
-    properties: ['border-left-width', 'border-left-style', 'border-left-color'],
-    shorthandSyntax: 'border-left-width border-left-style border-left-color',
-    getShorthandValue: require('./shorthanders/border-top'),
-  },
-  {
-    shorthandProperty: 'border-right',
-    properties: ['border-right-width', 'border-right-style', 'border-right-color'],
-    shorthandSyntax: 'border-right-width border-right-style border-right-color',
-    getShorthandValue: require('./shorthanders/border-top'),
+    shorthandSyntax: 'border-width border-style border-color',
+    getShorthandValue: require('./shorthanders/border'),
   },
   {
     shorthandProperty: 'border',

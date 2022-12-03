@@ -101,19 +101,24 @@ let result = {
 shorthands.forEach(function (shorthand) {
   const shorthandValue = shorthand.getShorthandValue(shorthand, declarations);
   if (shorthandValue === 'delete') {
-    result = Object.entries(result).reduce((transformedObject, [property, value]) => {
-      if (!shorthand.properties.includes(property)) {
-        transformedObject[property] = value;
-      }
-      return transformedObject;
-    }, {});
-
-    declarations = Object.entries(declarations).reduce((transformedObject, [k]) => {
-      if (!shorthand.properties.includes(k)) {
-        transformedObject[k] = declarations[k];
-      }
-      return transformedObject;
-    }, {});
+    result = Object.entries(result).reduce(
+      (transformedObject, [property, value]) => {
+        if (!shorthand.properties.includes(property)) {
+          transformedObject[property] = value;
+        }
+        return transformedObject;
+      },
+      { [shorthand.shorthandProperty]: shorthandValue },
+    );
+    declarations = Object.entries(declarations).reduce(
+      (transformedObject, [k]) => {
+        if (!shorthand.properties.includes(k)) {
+          transformedObject[k] = declarations[k];
+        }
+        return transformedObject;
+      },
+      { [shorthand.shorthandProperty]: { property: shorthand.shorthandProperty, value: shorthandValue } },
+    );
   } else if (shorthandValue !== '') {
     result = Object.entries(result).reduce(
       (transformedObject, [property, value]) => {
